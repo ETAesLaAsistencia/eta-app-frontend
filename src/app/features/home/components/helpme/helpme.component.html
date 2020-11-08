@@ -1,0 +1,58 @@
+<div *ngIf="state===0" class="h-screen flex flex-col justify-center items-center">
+  <h1 class="text-4xl text-purple-700 text-center">Vamos a ayudarte.</h1>
+  <p>Pulsa este boton así podemos saber donde estás.</p>
+
+  <button (click)="getLocation()" class="bg-green-800 w-full h-20 flex items-center justify-center my-8">
+    <span class="text-white text-3xl font-bold">
+      Activar GPS.
+    </span>
+  </button>
+</div>
+
+<div *ngIf="state===1" class="h-screen flex flex-col justify-center items-center">
+  <h1 class="text-4xl text-purple-700 text-center">¿Hay alguien contigo?</h1>
+
+  <button (click)="isNotAlone()" class="bg-green-800 w-full h-20 flex items-center justify-center my-8">
+    <span class="text-white text-3xl font-bold">
+      Si.
+    </span>
+  </button>
+  <button (click)="isAlone()" class="bg-gray-800 w-full h-20 flex items-center justify-center my-8">
+    <span class="text-white text-3xl font-bold">
+      No.
+    </span>
+  </button>
+</div>
+
+<div *ngIf="state===2" class="h-screen flex flex-col justify-center items-center">
+  <h1 class="text-4xl text-purple-700 text-center">¿Cuántas personas te acompañan?</h1>
+  <div class="flex item-center w-full">
+    <button (click)="changePeople(false)" class="bg-green-800 w-1/5 h-20 my-8">
+      <span class="text-white font-bold">-</span>
+    </button>
+    <input type='number'
+      class='shadow text-center appearance-none border rounded my-8 w-3/5 h-20 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+      [(value)]='people'>
+    <button (click)="changePeople(true)" class="bg-green-800 w-1/5 h-20 justify-center my-8">
+      <span class="text-white font-bold">+</span>
+    </button>
+  </div>
+  <button (click)="sendToBackend()" class="bg-green-800 w-full h-20 flex items-center justify-center my-8">
+    <span class="text-white text-3xl font-bold">
+      Enviar
+    </span>
+  </button>
+</div>
+
+<div *ngIf="state===3" class="h-screen flex flex-col justify-center items-center">
+  <h1 class="text-4xl text-purple-700 text-center">¡No hemos podido dar con tus coordenadas!</h1>
+  <p class="text-center">Por favor escibenos tu dirección manualmente. Recuerda incluir tantos detalles como te sea posible para que podamos
+    dar contigo cuanto antes.</p>
+  <textarea placeholder='Ingresa tu direccion aquí' class='shadow text-center appearance-none border rounded my-8 w-full h-20 text-gray-700 leading-tight focus:outline-none focus:shadow-outline' [(ngModel)]='manual_location' rows="4" cols="50">
+  </textarea>
+  <button (click)="getManualLocation()" class="bg-green-800 w-full h-20 flex items-center justify-center my-8">
+    <span class="text-white text-3xl font-bold">
+      Continuar.
+    </span>
+  </button>
+</div>
