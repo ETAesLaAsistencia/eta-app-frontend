@@ -8,6 +8,11 @@ const routes: Routes = [
       import('./features/home/home.module').then((m) => m.HomeModule)
   },
   {
+    path: 'missing',
+    loadChildren: () =>
+      import('./features/missing/missing.module').then((m) => m.MissingModule)
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }
